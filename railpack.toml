@@ -1,0 +1,21 @@
+[providers.node]
+pnpmVersion = "9.15.9"
+
+[variables]
+NODE_ENV = "production"
+BASE_PATH = "/"
+
+[phases.install]
+cmds = [
+  "rm -f pnpm-lock.yaml",
+  "pnpm install --no-frozen-lockfile",
+]
+
+[phases.build]
+cmds = [
+  "pnpm --filter @workspace/khtat-sairak build",
+  "pnpm --filter @workspace/api-server build",
+]
+
+[start]
+cmd = "pnpm --filter @workspace/api-server start"
